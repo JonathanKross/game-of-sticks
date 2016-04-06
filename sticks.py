@@ -45,6 +45,7 @@ def play_again():
         main()
 
     else:
+        print("Thank you. We appreciate your business.")
         sys.exit()
 
 def clear():
@@ -56,30 +57,31 @@ def clear():
 def main():
     total_number_sticks = 0
     number_of_turns = 1
+
     print ("Welcome to the Game of Sticks!")
 
-    while True:
-        total_number_sticks = starting_number_sticks()
-        while total_number_sticks > 0:
+    total_number_sticks = starting_number_sticks()
 
-            clear()
-            print("\nThere are {} sticks on the board.\n".format(total_number_sticks))
+    while total_number_sticks > 0:
 
-            if determine_turn(number_of_turns):
-                print("\nPlayer 1's turn:\n")
-                total_number_sticks -= user_picks_sticks()
-            else:
-                print("\nPlayer 2's turn:\n")
-                total_number_sticks -= user_picks_sticks()
-            number_of_turns +=1
+        clear()
+        print("\nThere are {} sticks on the board.\n".format(total_number_sticks))
 
+        if determine_turn(number_of_turns):
+            print("\nPlayer 1's turn:\n")
+            total_number_sticks -= user_picks_sticks()
         else:
-            if determine_turn(number_of_turns):
-                print("\nPlayer 1 wins!\n")
-            else:
-                print("\nPlayer 2 wins!\n")
+            print("\nPlayer 2's turn:\n")
+            total_number_sticks -= user_picks_sticks()
+        number_of_turns +=1
 
-            play_again()
+    else:
+        if determine_turn(number_of_turns):
+            print("\nPlayer 1 wins!\n")
+        else:
+            print("\nPlayer 2 wins!\n")
+
+        play_again()
 
 if __name__ == '__main__':
     main()
